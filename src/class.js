@@ -17,6 +17,16 @@
       });
     };
 
+    LineClient.prototype.sendMessageToMultipleUsers = function (to, messages) {
+      return this.fetch_('/bot/message/multicast', {
+        'method': 'post',
+        'payload': {
+          'to': to,
+          'messages': messages
+        }
+      });
+    };
+
     LineClient.prototype.fetch_ = function (endPoint, options) {
       var url = this.apiUrl + endPoint;
       var response = UrlFetchApp.fetch(url, {
