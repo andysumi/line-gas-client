@@ -27,6 +27,16 @@
       });
     };
 
+    LineClient.prototype.sendReplyMessage = function (replyToken, messages) {
+      return this.fetch_('/bot/message/reply', {
+        'method': 'post',
+        'payload': {
+          'replyToken': replyToken,
+          'messages': messages
+        }
+      });
+    };
+
     LineClient.prototype.fetch_ = function (endPoint, options) {
       var url = this.apiUrl + endPoint;
       var response = UrlFetchApp.fetch(url, {
