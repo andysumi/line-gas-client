@@ -46,7 +46,11 @@
         'headers': this.headers,
         'payload': JSON.stringify(options.payload)
       });
-      return JSON.parse(response.getContentText());
+      var status = (response.getResponseCode() === 200) ? true : false;
+      return {
+        status: status,
+        body  : JSON.parse(response.getContentText()),
+      }
     };
 
     return LineClient;
